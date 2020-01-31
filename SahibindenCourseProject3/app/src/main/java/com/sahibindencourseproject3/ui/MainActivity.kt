@@ -23,12 +23,15 @@ class MainActivity : AppCompatActivity() {
                 setContentView(this,
                         R.layout.activity_main)
 
+
         mainActiviyViewModel.getLiveWeatherItems().observe(this, Observer {
-            print("")
+            binding.day = "Cuma"
+            binding.weatherItem = it?.weatherItem?.get(0)
         })
 
         mainActiviyViewModel.fetchDatas()
     }
+
 
 
 }
