@@ -15,4 +15,8 @@ fun FragmentManager.addToCommit(resourceId: Int, fragment: Fragment) {
     this.beginTransaction().add(resourceId,fragment).commit()
 }
 
-    fun Double.toCelcius(): String = this.roundToInt().toString() + "°"
+fun Double.toCelcius(): String = this.roundToInt().toString() + "°"
+
+fun String.toIconUrl(): String {
+    return "http://openweathermap.org/img/wn/$this@2x.png"
+}
