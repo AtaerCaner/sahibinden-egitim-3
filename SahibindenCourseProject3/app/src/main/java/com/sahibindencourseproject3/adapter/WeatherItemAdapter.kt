@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sahibindencourseproject3.R
 import com.sahibindencourseproject3.api.model.WeatherItem
+import com.sahibindencourseproject3.ext.toCelcius
 import com.sahibindencourseproject3.util.DateUtil
 import com.sahibindencourseproject3.util.TemperatureUtil
 
@@ -66,7 +67,9 @@ class WeatherItemAdapter(private val itemClickListener: (WeatherItem) -> Unit) :
             txtDay?.text = DateUtil.getGivenDayOfWeekAsName(
                     (position + DateUtil.todaysDayOfWeekAsIndex) % 7
             )
-            txtTemp?.text = TemperatureUtil.getCelcius(weatherItem.temp?.day)
+
+            txtTemp?.text = weatherItem.temp?.day?.toCelcius()
+
             view.setOnClickListener { itemListener.invoke(weatherItem) }
         }
     }

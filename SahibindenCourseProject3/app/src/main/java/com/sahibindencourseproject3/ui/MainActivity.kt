@@ -1,5 +1,6 @@
 package com.sahibindencourseproject3.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -25,9 +26,11 @@ class MainActivity : AppCompatActivity() {
                 setContentView(this,
                         R.layout.activity_main)
 
-        adapter = WeatherItemAdapter({
-            Toast.makeText(this,"" + it.temp?.day , Toast.LENGTH_SHORT).show()
-        })
+        adapter = WeatherItemAdapter {
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra(DetailActivity.BUNDLE_WEATHER_ITEM, it)
+            startActivity(intent)
+        }
 
         binding.rc.layoutManager = LinearLayoutManager(this)
         binding.rc.adapter = adapter
