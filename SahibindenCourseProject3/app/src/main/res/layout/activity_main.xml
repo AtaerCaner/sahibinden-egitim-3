@@ -10,18 +10,26 @@
         <variable
             name="weatherItem"
             type="com.sahibindencourseproject3.api.model.WeatherItem" />
+
+        <import type="com.sahibindencourseproject3.util.DateUtil"/>
+
+        <import type="com.sahibindencourseproject3.util.TemperatureUtil"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/app_background"
         tools:context=".ui.MainActivity">
 
         <TextView
             android:id="@+id/txtDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{day}"
+            android:text="@{DateUtil.todaysDayOfWeekAsName}"
+            android:textColor="@color/white"
+            android:textSize="45sp"
+            android:textStyle="bold"
             app:layout_constraintVertical_bias="0.3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -32,20 +40,31 @@
             android:id="@+id/txtTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(weatherItem.temp.day)}"
+            android:text="@{TemperatureUtil.getCelcius(weatherItem.temp.day)}"
+            android:textColor="@color/white"
+            android:textSize="45sp"
             app:layout_constraintTop_toBottomOf="@+id/txtDay"
             app:layout_constraintStart_toStartOf="@+id/txtDay"
             app:layout_constraintEnd_toEndOf="@+id/txtDay"/>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <View
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/colorAccent"
+            android:background="@color/white"
+            android:alpha="0.2"
+            app:layout_constraintTop_toTopOf="@+id/rc"
+            app:layout_constraintBottom_toBottomOf="@+id/rc"
+            app:layout_constraintStart_toStartOf="@+id/rc"
+            app:layout_constraintEnd_toEndOf="@+id/rc" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@id/txtTemp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
