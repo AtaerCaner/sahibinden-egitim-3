@@ -57,4 +57,8 @@ class City() : Parcelable {
         }
     }
 
+    fun example(id: Int = 0, name: String = "") {
+
+    }
+
 }
